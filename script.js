@@ -3,15 +3,15 @@ $(document).ready(function() {
 	var time2 = 0;
 
 	window.setInterval(function() {
-		ymotion(time += 1000 / 60, $(".square"));
-		xmotion(time, $(".square"));
+		ymotion(time += 1000 / 60, $("#earth"));
+		xmotion(time, $("#earth"));
 	}, 1000 / 60);
 });
 
-function ymotion(time, box) {
-	box.css({ bottom: (Math.sin(time / 800) * 32 + 32) + "vmin" });
+function ymotion(time, element) {
+	element.css({ bottom: ((Math.sin(time / 800) + 1) * ($(window).height() - element.height()) / 2) + "px" });
 }
 
-function xmotion(time, box) {
-	box.css({ left: ((Math.cos(time / 800) * 32 + 32) + "vmin") });
+function xmotion(time, element) {
+	element.css({ left: ((Math.cos(time / 800) + 1) * ($(window).width() - element.width()) / 2) + "px" });
 }
