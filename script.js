@@ -12,10 +12,10 @@ $(document).ready(function() {
 	var moon = $("#earthSystem .moon");
 
 	setInterval(function() {
-		ymotion(time += interval, earthSystem, earthSystemMotionMultiplier, 400);
-		xmotion(time, earthSystem, earthSystemMotionMultiplier, 600);
-		ymotion(time, moon, moonMotionMultiplier, 100);
-		xmotion(time, moon, moonMotionMultiplier, 140);
+		ymotion(time += interval, earthSystem, earthSystemMotionMultiplier, 200);
+		xmotion(time, earthSystem, earthSystemMotionMultiplier, 300);
+		ymotion(time, moon, moonMotionMultiplier, 30);
+		xmotion(time, moon, moonMotionMultiplier, 42);
 		// var angle = Math.atan2(earthSystem.parent().height()  / 2 - earthSystem.position().top, earthSystem.parent().width() / 2 - earthSystem.position().left);
 		// var angle1 = Math.atan2(moon.parent().height()  / 2 - moon.position().top, moon.parent().width() / 2 - moon.position().left);
 		// $("#sun").css({transform: "rotateZ(" + angle + "rad)"});
