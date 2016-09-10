@@ -1,0 +1,36 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font: 100% Times;
+}
+
+.container {
+	background-color: blue;
+	width: 500px;
+	height: 500px;
+	margin-left: calc(50vw - 250px);
+	margin-top: calc(50vh - 250px);
+	position: relative;
+	float: left;
+}
+
+.square {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background-color: red;
+}
+
+p {
+	margin-top: calc(50px - 1em);
+	text-align: center;
+	font-weight: bold;
+}
