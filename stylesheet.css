@@ -19,20 +19,33 @@ body {
     height: 100vh;
     position: relative;
     float: left;
+    overflow: hidden;
+}
+
+#earthSystem {
+    box-sizing: border-box;
+    position: absolute;
+    width: 36vmin;
+    height: 24vmin;
+    /*background: url("img/earthSystem.png");
+    background-size: 15vmin 15vmin;
+    background-repeat: no-repeat;
+    background-position: center;*/
 }
 
 #earth {
     box-sizing: border-box;
     position: absolute;
-    width: 36vmin;
-    height: 24vmin;
+    width: 15vmin;
+    height: 15vmin;
     background: url("img/earth.png");
-    background-size: 15vmin 15vmin;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-size: cover;
+    left: 10.5vmin;
+    bottom: 4.5vmin;
+    animation: .027397s rotate linear infinite;
 }
 
-#earth .moon {
+#earthSystem .moon {
     width: 5vmin;
     height: 5vmin;
     background-image: url("img/moon.png");
@@ -48,4 +61,17 @@ body {
     background-size: cover;
     left: calc(50vw - 20vmin);
     top: calc(50vh - 20vmin);
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    animation: .657534s rotate linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateZ(360deg);
+    }
+    to {
+        transform: rotateZ(0);
+    }
 }
