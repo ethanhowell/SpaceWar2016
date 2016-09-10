@@ -1,40 +1,51 @@
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 body {
-	font: 100% Times;
+    font: 100% Times;
 }
 
 .space {
-	background: url("img/stars.png");
-	background-size: cover;
-	width: 100vw;
-	height: 100vh;
-	position: relative;
-	float: left;
+    background: url("img/stars.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    float: left;
 }
 
 #earth {
-	position: absolute;
-	width: 20vmin;
-	height: 20vmin;
-	background: url("img/earth.png");
-	background-size: cover;
+    box-sizing: border-box;
+    position: absolute;
+    width: 36vmin;
+    height: 24vmin;
+    background: url("img/earth.png");
+    background-size: 15vmin 15vmin;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#earth .moon {
+    width: 5vmin;
+    height: 5vmin;
+    background-image: url("img/moon.png");
+    background-size: cover;
+    position: absolute;
 }
 
 #sun {
-	position: absolute;
-	width: 40vmin;
-	height: 40vmin;
-	background: url("img/sun.png");
-	background-size: cover;
-	left: calc(50vw - 20vmin);
-	top: calc(50vh - 20vmin);
+    position: absolute;
+    width: 40vmin;
+    height: 40vmin;
+    background: url("img/sun.png");
+    background-size: cover;
+    left: calc(50vw - 20vmin);
+    top: calc(50vh - 20vmin);
 }
