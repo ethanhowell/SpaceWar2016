@@ -14,23 +14,23 @@ body {
 
 .container {
 	background-color: blue;
-	width: 500px;
-	height: 500px;
-	margin-left: calc(50vw - 250px);
-	margin-top: calc(50vh - 250px);
+	width: 80vmin;
+	height: 80vmin;
+	margin-left: calc(50vw - 40vmin);
+	margin-top: calc(50vh - 40vmin);
 	position: relative;
 	float: left;
 }
 
 .square {
 	position: absolute;
-	width: 100px;
-	height: 100px;
+	width: 16vmin;
+	height: 16vmin;
 	background-color: red;
 }
 
 p {
-	margin-top: calc(50px - 1em);
+	margin-top: calc(8vmin - 1em);
 	text-align: center;
 	font-weight: bold;
 }
