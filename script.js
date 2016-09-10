@@ -1,20 +1,24 @@
 $(document).ready(function() {
 	var time = 0;
-	var time2 = 0;
+	var second = 1000;
+	var framesPerSecond = 60;
+	var interval = second / framesPerSecond;
 
-	window.setInterval(function() {
-		ymotion(time += 1000 / 60, $("#earth"), 1/900);
-		xmotion(time, $("#earth"), 1/900);
-	}, 1000 / 60);
+	var earthMotionMultiplier = 1 / 900;
+	var moonMotionMultiplier = 1 / 200;
 
-	window.setInterval(function() {
-		ymotion(time2 += 1000 / 60, $("#earth .moon"), 1/200);
-		xmotion(time2, $("#earth .moon"), 1/200);
-	}, 1000 / 60);
+	var earth = $("#earth");
+	var moon = $("#earth .moon");
+
+	setInterval(function() {
+		ymotion(time += interval, earth, earthMotionMultiplier);
+		xmotion(time, earth, earthMotionMultiplier);
+		ymotion(time, moon, moonMotionMultiplier);
+		xmotion(time, moon, moonMotionMultiplier);
+	}, interval);
 });
 
 function ymotion(time, element, multiplier) {
-	
 	element.css({ bottom: ((Math.sin(time * multiplier) + 1) * (element.parent().height() - element.height()) / 2) + "px" });
 }
 
