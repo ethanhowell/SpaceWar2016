@@ -9,9 +9,9 @@ $(document).ready(function() {
 });
 
 function ymotion(time, box) {
-	box.css({ bottom: (Math.sin(time / 800) * 200 + 200) + "px" });
+	box.css({ bottom: (Math.sin(time / 800) * 32 + 32) + "vmin" });
 }
 
 function xmotion(time, box) {
-	box.css({ left: ((Math.cos(time / 800) * 200 + 200) + "px") });
+	box.css({ left: ((Math.cos(time / 800) * 32 + 32) + "vmin") });
 }
