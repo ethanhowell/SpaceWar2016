@@ -12,25 +12,29 @@ body {
 	font: 100% Times;
 }
 
-.container {
-	background-color: blue;
-	width: 80vmin;
-	height: 80vmin;
-	margin-left: calc(50vw - 40vmin);
-	margin-top: calc(50vh - 40vmin);
+.space {
+	background: url("img/stars.png");
+	background-size: cover;
+	width: 100vw;
+	height: 100vh;
 	position: relative;
 	float: left;
 }
 
-.square {
+#earth {
 	position: absolute;
-	width: 16vmin;
-	height: 16vmin;
-	background-color: red;
+	width: 20vmin;
+	height: 20vmin;
+	background: url("img/earth.png");
+	background-size: cover;
 }
 
-p {
-	margin-top: calc(8vmin - 1em);
-	text-align: center;
-	font-weight: bold;
+#sun {
+	position: absolute;
+	width: 40vmin;
+	height: 40vmin;
+	background: url("img/sun.png");
+	background-size: cover;
+	left: calc(50vw - 20vmin);
+	top: calc(50vh - 20vmin);
 }
