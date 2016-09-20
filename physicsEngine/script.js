@@ -7,6 +7,10 @@ $(document).ready(function() {
 	$(document).keypress(function() {
 		box.vy = 1;
 	});
+	
+	$(document).touchstart(function() {
+		box.vy = 1;
+	});
 
 });
 
