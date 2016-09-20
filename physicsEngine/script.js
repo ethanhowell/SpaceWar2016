@@ -8,7 +8,8 @@ $(document).ready(function() {
 		box.vy = 1;
 	});
 	
-	$(document).touchstart(function() {
+	$(document).touchstart(function(e) {
+		e.preventDefault();
 		box.vy = 1;
 	});
 
