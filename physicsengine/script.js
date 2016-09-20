@@ -4,13 +4,8 @@ $(document).ready(function() {
 	box = new Body($(".box"));
 	beginRender();
 
-	$(document).keypress(function() {
-		box.vy = 1;
-	});
-	
-	$(document).touchstart(function(e) {
-		e.preventDefault();
-		box.vy = 1;
+	$(document).keydown(function() {
+		box.vy += 1;
 	});
 
 });
