@@ -38,10 +38,11 @@ function render(startInterval, timestamp) {
 	box.element.css('bottom', box.y + 'px');
 	box.element.css('left', box.x + 'px');
 
-	$("<div class=\"dot\"></div>").css({
+	//draws dots to show the path the box is taking
+	/* $("<div class=\"dot\"></div>").css({
 		"bottom": box.y + 20 + 'px',
 		"left": box.x + 20 + 'px'
-	}).appendTo(".container");
+	}).appendTo(".container"); */
 
 	if (false) { //condition to end animation
 		cancelAnimationFrame(renderID);
