@@ -4,8 +4,24 @@ $(document).ready(function() {
 	box = new Body($(".box"));
 	beginRender();
 
-	$(document).keydown(function() {
-		box.vy += 1;
+	$(document).keydown(function(e) {
+		console.log(e.keyCode);
+		switch (e.keyCode) {
+			case 87:
+				box.vy += Math.cos(box.theta) * .1;
+				box.vx += Math.sin(box.theta) * .1;
+				break;
+			case 65:
+				box.omega -= .002;
+				break;
+			case 83:
+				box.vy -= Math.cos(box.theta) * .1;
+				box.vx -= Math.sin(box.theta) * .1;
+				break;
+			case 68:
+				box.omega += .002;
+				break;
+		}
 	});
 
 });
@@ -13,14 +29,18 @@ $(document).ready(function() {
 var Body = function(element) {
 	this.element = element;
 
-	this.x = 225;
-	this.y = 225;
+	this.x = $(".container").width() / 2 - 25;
+	this.y = $(".container").height() / 2 - 25;
 
-	this.vx = 0;
-	this.vy = 0;
+	this.vx = .0;
+	this.vy = .0;
 
 	this.ax = 0;
-	this.ay = -.003;
+	this.ay = -.000;
+
+	this.theta = 0;
+	this.omega = 0;
+	this.alpha = 0;
 }
 
 function physicsEngine(interval) {
@@ -29,14 +49,20 @@ function physicsEngine(interval) {
 
 	box.vx += box.ax * interval;
 	box.vy += box.ay * interval;
+
+	box.theta += box.omega * interval + .5 * box.alpha * interval * interval;
+	box.omega += box.alpha * interval;
 }
 
 function render(startInterval, timestamp) {
 	var interval = timestamp - startInterval;
 	physicsEngine(interval);
 
-	box.element.css('bottom', box.y + 'px');
-	box.element.css('left', box.x + 'px');
+	box.element.css('bottom', (box.y = modulus(box.y, $(".container").height())) + 'px');
+	box.element.css('left', (box.x = modulus(box.x, $(".container").width())) + 'px');
+	box.element.css({'transform': 'rotate(' + box.theta + 'rad)'});
+
+	//console.log(box.y);
 
 	//draws dots to show the path the box is taking
 	/* $("<div class=\"dot\"></div>").css({
@@ -59,4 +85,9 @@ function beginRender() {
 		startInterval = timestamp - 16.7;
 		render(startInterval, timestamp);
 	});
+}
+
+function modulus(dividend, divisor) {
+	remainder = dividend % divisor;
+	return remainder >= 0 ? remainder : divisor + remainder;
 }
