@@ -76,7 +76,7 @@ function physicsEngine(interval) {
 
 	box.theta = Math.atan2(-box.vy, box.vx) + Math.PI / 2;
 
-	if(box.sqrdDistToBlackhole < Math.min(container_width, container_height) / 25) {
+	if(Math.sqrt(box.sqrdDistToBlackhole) < Math.min(container_width, container_height) / 20) {
 		box.x = Math.random() * container_width;
 		box.y = Math.random() * container_height;
 		box.vx = Math.random() * container_width / 1000;
