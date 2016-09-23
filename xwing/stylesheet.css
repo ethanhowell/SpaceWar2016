@@ -33,9 +33,9 @@ h1 {
 }
 
 .blackhole {
-	width: 4vmin;
-	height: 4vmin;
-	border-radius: 20px;
+	width: 12vmin;
+	height: 12vmin;
+	border-radius: 12vmin;
 	background-color: black;
 	color: white;
 	font-size: 1vmin;
