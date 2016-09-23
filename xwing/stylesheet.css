@@ -13,7 +13,6 @@ h1 {
 .container {
 	width: 100vw;
 	height: 100vh;
-	background-color: silver;
 	position: relative;
 	overflow: hidden;
 	background-size: 100%;
