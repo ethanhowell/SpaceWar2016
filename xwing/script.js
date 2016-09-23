@@ -79,8 +79,8 @@ function physicsEngine(interval) {
 	if(box.sqrdDistToBlackhole < Math.min(container_width, container_height) / 25) {
 		box.x = Math.random() * container_width;
 		box.y = Math.random() * container_height;
-		box.vx = Math.random() * .5;
-		box.vy = Math.random() * .5;
+		box.vx = Math.random() * container_width / 1000;
+		box.vy = Math.random() * container_height / 1000;
 		//box.theta = Math.atan2(box.vy, box.vx) - Math.PI / 2;
 	}
 }
