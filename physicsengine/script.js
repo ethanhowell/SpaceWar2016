@@ -8,18 +8,33 @@ $(document).ready(function() {
 		console.log(e.keyCode);
 		switch (e.keyCode) {
 			case 87:
-				box.vy += Math.cos(box.theta) * .1;
-				box.vx += Math.sin(box.theta) * .1;
+				box.ay = Math.cos(box.theta) * .001;
+				box.ax = Math.sin(box.theta) * .001;
 				break;
 			case 65:
-				box.omega -= .002;
+				box.alpha = -.00002;
 				break;
 			case 83:
-				box.vy -= Math.cos(box.theta) * .1;
-				box.vx -= Math.sin(box.theta) * .1;
+				box.ay = -Math.cos(box.theta) * .001;
+				box.ax = -Math.sin(box.theta) * .001;
 				break;
 			case 68:
-				box.omega += .002;
+				box.alpha = .00002;
+				break;
+		}
+	});
+	
+	$(document).keyup(function(e) {
+		console.log(e.keyCode);
+		switch (e.keyCode) {
+			case 87:
+			case 83:
+				box.ay = 0;
+				box.ax = 0;
+				break;
+			case 65:
+			case 68:
+				box.alpha = 0;
 				break;
 		}
 	});
