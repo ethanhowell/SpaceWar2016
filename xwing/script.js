@@ -9,7 +9,12 @@ var starships = new Array();
 $(document).ready(function() {
 	setWindowDimensions();
 
-	starships.push(new Starship($(".xwing")));
+	starships.push(new Starship($(".xwing"),
+		container_width / 5,
+		container_height * 4 / 5,
+		Math.PI));
+	starships.push(new Starship($(".tiefighter"), container_width * 4 / 5, container_height / 5, 0));
+
 	beginRender();
 });
 
@@ -20,7 +25,7 @@ $(document).keyup(handleKeyup);
 $(window).resize(handleResize);
 
 
-var Starship = function(element) {
+var Starship = function(element, xorigin, yorigin, orientation) {
 	this.element = element;
 	this.width;
 	this.height;
@@ -28,8 +33,8 @@ var Starship = function(element) {
 	this.isWarping = false;
 	this.userHasControl = true;
 
-	this.x = container_width / 5;
-	this.y = container_height * 4 / 5;
+	this.x = xorigin;
+	this.y = yorigin;
 
 	this.vx = 0;
 	this.vy = 0;
@@ -40,48 +45,50 @@ var Starship = function(element) {
 	this.engineAcceleration = 0;
 	this.gravityAcceleration = 0;
 
-	this.theta = Math.PI;
+	this.theta = orientation;
 	this.omega = 0;
 
 	this.rx, this.ry, this.sqrdDistToWormhole;
 }
 
-function physicsEngine(interval) {
-	starships[0].rx = starships[0].x - container_width / 2;
-	starships[0].ry = starships[0].y - container_height / 2;
-	starships[0].sqrdDistToWormhole = starships[0].rx * starships[0].rx + starships[0].ry * starships[0].ry;
+function physicsEngine(interval, starship) {
+	starship.rx = starship.x - container_width / 2;
+	starship.ry = starship.y - container_height / 2;
+	starship.sqrdDistToWormhole = starship.rx * starship.rx + starship.ry * starship.ry;
 
-	starships[0].gravityAcceleration = gravityStrength / starships[0].sqrdDistToWormhole;
+	starship.gravityAcceleration = gravityStrength / starship.sqrdDistToWormhole;
 
-	starships[0].ax = starships[0].gravityAcceleration * starships[0].rx / Math.sqrt(starships[0].sqrdDistToWormhole) +
-		starships[0].engineAcceleration * Math.sin(starships[0].theta);
-	starships[0].ay = starships[0].gravityAcceleration * starships[0].ry / Math.sqrt(starships[0].sqrdDistToWormhole) +
-		starships[0].engineAcceleration * Math.cos(starships[0].theta);
+	starship.ax = starship.gravityAcceleration * starship.rx / Math.sqrt(starship.sqrdDistToWormhole) +
+		starship.engineAcceleration * Math.sin(starship.theta);
+	starship.ay = starship.gravityAcceleration * starship.ry / Math.sqrt(starship.sqrdDistToWormhole) +
+		starship.engineAcceleration * Math.cos(starship.theta);
 
-	starships[0].x += starships[0].vx * interval + .5 * starships[0].ax * interval * interval;
-	starships[0].y += starships[0].vy * interval + .5 * starships[0].ay * interval * interval;
-	starships[0].y = modulus(starships[0].y, container_height);
-	starships[0].x = modulus(starships[0].x, container_width);
+	starship.x += starship.vx * interval + .5 * starship.ax * interval * interval;
+	starship.y += starship.vy * interval + .5 * starship.ay * interval * interval;
+	starship.y = modulus(starship.y, container_height);
+	starship.x = modulus(starship.x, container_width);
 
-	starships[0].vx += starships[0].ax * interval;
-	starships[0].vy += starships[0].ay * interval;
+	starship.vx += starship.ax * interval;
+	starship.vy += starship.ay * interval;
 
-	starships[0].theta += starships[0].omega * interval;
+	starship.theta += starship.omega * interval;
 
-	if (Math.sqrt(starships[0].sqrdDistToWormhole) < Math.min(container_width, container_height) / 20) {
-		warp(starships[0]);
+	if (Math.sqrt(starship.sqrdDistToWormhole) < Math.min(container_width, container_height) / 20) {
+		warp(starship);
 	}
 }
 
 function render(startInterval, timestamp) {
 	var interval = timestamp - startInterval;
 
-	if (!starships[0].isWarping) {
-		physicsEngine(interval);
+	for (var i = 0; i < starships.length; i++) {
+		if (!starships[i].isWarping) {
+			physicsEngine(interval, starships[i]);
 
-		starships[0].element.css('bottom', (starships[0].y - starships[0].height / 2) + 'px');
-		starships[0].element.css('left', (starships[0].x - starships[0].width / 2) + 'px');
-		starships[0].element.css({ 'transform': 'rotate(' + starships[0].theta + 'rad)' });
+			starships[i].element.css('bottom', (starships[i].y - starships[i].height / 2) + 'px');
+			starships[i].element.css('left', (starships[i].x - starships[i].width / 2) + 'px');
+			starships[i].element.css({ 'transform': 'rotate(' + starships[i].theta + 'rad)' });
+		}
 	}
 
 	//draws dots to show the path the starships[0] is taking
@@ -158,16 +165,29 @@ function handleKeydown(e) {
 			// 	starships[0].engineAcceleration = engineStrength;
 			// 	break;
 			case 65:
-			case 37:
 				starships[0].omega = -turnConstant;
 				break;
 			case 83:
-			case 38:
 				starships[0].engineAcceleration = engineStrength;
 				break;
 			case 68:
-			case 39:
 				starships[0].omega = turnConstant;
+				break;
+		}
+	}
+	if (starships[1].userHasControl) {
+		switch (e.keyCode) {
+			// case 87:
+			// 	starships[1].engineAcceleration = engineStrength;
+			// 	break;
+			case 74:
+				starships[1].omega = -turnConstant;
+				break;
+			case 75:
+				starships[1].engineAcceleration = engineStrength;
+				break;
+			case 76:
+				starships[1].omega = turnConstant;
 				break;
 		}
 	}
@@ -180,16 +200,29 @@ function handleKeyup(e) {
 			// 	starships[0].engineAcceleration = 0;
 			// 	break;
 			case 65:
-			case 37:
 				starships[0].omega = 0;
 				break;
 			case 83:
-			case 38:
 				starships[0].engineAcceleration = 0;
 				break;
 			case 68:
-			case 39:
 				starships[0].omega = 0;
+				break;
+		}
+	}
+	if (starships[1].userHasControl) {
+		switch (e.keyCode) {
+			// case 87:
+			// 	starships[1].engineAcceleration = 1;
+			// 	break;
+			case 74:
+				starships[1].omega = 0;
+				break;
+			case 75:
+				starships[1].engineAcceleration = 0;
+				break;
+			case 76:
+				starships[1].omega = 0;
 				break;
 		}
 	}

@@ -17,15 +17,22 @@ h1 {
 	overflow: hidden;
 }
 
-.xwing {
-	width: 6vmin;
+.starship {
+	width: 7.5vmin;
 	height: 7.5vmin;
 	text-align: center;
 	position: absolute;
 	background-size: 100% 100%;
 	background-position: center;
-	background-image: url('http://vignette3.wikia.nocookie.net/clubpenguin/images/2/24/X_Wing_Game_Fighter.png/revision/latest?cb=20130804150458');
 	background-repeat: no-repeat;
+}
+
+.xwing {
+	background-image: url('http://vignette3.wikia.nocookie.net/clubpenguin/images/2/24/X_Wing_Game_Fighter.png/revision/latest?cb=20130804150458');
+}
+
+.tiefighter {
+	background-image: url('tiefighter.svg');
 }
 
 .blackhole {
