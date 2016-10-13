@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+h1 {
+	margin-top: .2em;
+	text-align: center;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	background-color: silver;
+	position: relative;
+	overflow: hidden;
+}
+
+.starship {
+	width: 7.5vmin;
+	height: 7.5vmin;
+	text-align: center;
+	position: absolute;
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.xwing {
+	background-image: url('http://vignette3.wikia.nocookie.net/clubpenguin/images/2/24/X_Wing_Game_Fighter.png/revision/latest?cb=20130804150458');
+}
+
+.tiefighter {
+	background-image: url('tiefighter.svg');
+}
+
+.blackhole {
+	width: 4vmin;
+	height: 4vmin;
+	border-radius: 20px;
+	background-color: black;
+	color: white;
+	font-size: 1vmin;
+	text-align: center;
+	position: absolute;
+	left: calc(50vw - 2vmin);
+	top: calc(50vh - 2vmin);
+}
+
+.dot {
+	width: 1px;
+	height: 1px;
+	background-color: black;
+	position: absolute;
+	border-radius: 2px 2px;
+}
