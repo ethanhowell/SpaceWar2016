@@ -6,6 +6,51 @@ var gravityStrength = -4;
 var turnConstant = .0035;
 var starships = new Array();
 
+var physicsbody = {
+	element,
+	width, height,
+	x, y,
+	vx, vy,
+	ax, ay,
+	gravityAcceleration,
+	sqrdDistToWormhole,
+	physicsEngine: function(){},
+	
+	starship: {
+		element,
+		width, height,
+		x, y,
+		vx, vy,
+		ax, ay,
+		sqrdDistToWormhole,
+		physicsEngine: function(){},
+		isWarping,
+		userHasControl,
+		engineAcceleration,
+		gravityAcceleration,
+		theta, omega,
+		rx, ry,
+		warp: function(){},
+		getWarpPosition: function(){}
+	},
+
+	torpedo: {
+		element,
+		width, height,
+		x, y,
+		vx, vy,
+		ax, ay,
+		gravityAcceleration,
+		sqrdDistToWormhole,
+		physicsEngine: function(){},
+
+		LIFETIME, SPEED_INCREASE, //Constants
+
+		age,
+		parentStarship
+	}
+}
+
 $(document).ready(function() {
 	setWindowDimensions();
 
