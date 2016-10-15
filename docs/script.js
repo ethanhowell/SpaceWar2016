@@ -6,7 +6,7 @@ var gravityStrength = -4;
 var turnConstant = .0035;
 var starships = new Array();
 
-var physicsbody = {
+/* var physicsbody = {
 	element,
 	width, height,
 	x, y,
@@ -50,6 +50,7 @@ var physicsbody = {
 		parentStarship
 	}
 }
+*/
 
 window.onload = function() {
 	setWindowDimensions();
