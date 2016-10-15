@@ -51,7 +51,7 @@ var physicsbody = {
 	}
 }
 
-$(document).ready(function() {
+window.onload = function() {
 	setWindowDimensions();
 
 	starships.push(new Starship($(".xwing"),
