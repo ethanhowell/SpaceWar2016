@@ -61,7 +61,7 @@ window.onload = function() {
 	starships.push(new Starship($(".tiefighter"), container_width * 4 / 5, container_height / 5, 0));
 
 	beginRender();
-});
+}
 
 $(document).keydown(handleKeydown);
 
